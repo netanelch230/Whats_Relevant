@@ -1,0 +1,99 @@
+{
+    id: 'false_972548046820@c.us_3A5B3E3153A5B6A41493',
+    body: '.',
+    type: 'chat',
+    t: 1643557079,
+    notifyName: 'Nofar Shukrun',
+    from: '972548046820@c.us',
+    to: '972526965340@c.us',
+    self: 'in',
+    ack: 1,
+    isNewMsg: true,
+    star: false,
+    recvFresh: true,
+    isFromTemplate: false,
+    broadcast: false,
+    quotedMsg: null,
+    mentionedJidList: [],
+    isVcardOverMmsDocument: false,
+    isForwarded: false,
+    labels: [],
+    hasReaction: false,
+    ephemeralOutOfSync: false,
+    productHeaderImageRejected: false,
+    lastPlaybackProgress: 0,
+    isDynamicReplyButtonsMsg: false,
+    isMdHistoryMsg: false,
+    requiresDirectConnection: false,
+    fromMe: false,
+    sender: {
+      id: '972548046820@c.us',
+      name: 'מתוקה שלי 3>',
+      shortName: 'מתוקה',
+      pushname: 'Nofar Shukrun',
+      type: 'in',
+      isBusiness: false,
+      isEnterprise: false,
+      isContactSyncCompleted: 0,
+      formattedName: 'מתוקה שלי 3>',
+      isMe: false,
+      isMyContact: true,
+      isPSA: false,
+      isUser: true,
+      isWAContact: true,
+      profilePicThumbObj: {
+        eurl: 'https: //pps.whatsapp.net/v/t61.24694-24/122070099_975397026276050_697920
+      1697321056319_n.jpg?ccb=11-4&oh=01_AVw8AKfBbY1F33Vy6FF_abrxzXd586xspytWYCnKZdmROw&oe=
+  61FBC0C4',
+        id: '972548046820@c.us',
+        img: 'https: //pps.whatsapp.net/v/t61.24694-24/s96x96/122070099_975397026276050_
+      6979201697321056319_n.jpg?ccb=11-4&oh=01_AVx8th0-hYXW1ln9cjaeojThKNI6oMjhmOXJA81869_A
+  Gw&oe=61FBD4A5',
+        imgFull: 'https: //pps.whatsapp.net/v/t61.24694-24/122070099_975397026276050_697
+      9201697321056319_n.jpg?ccb=11-4&oh=01_AVw8AKfBbY1F33Vy6FF_abrxzXd586xspytWYCnKZdmROw&
+  oe=61FBC0C4',
+        raw: null,
+        tag: '1603379733'
+    },
+      msgs: null
+  },
+    timestamp: 1643557079,
+    content: '.',
+    isGroupMsg: false,
+    isMedia: false,
+    isNotification: false,
+    isPSA: false,
+    chat: {
+      id: '972548046820@c.us',
+      lastReceivedKey: {
+        fromMe: true,
+        remote: '972548046820@c.us',
+        id: '3A88243CC30FBAC9B94A',
+        _serialized: 'true_972548046820@c.us_3A88243CC30FBAC9B94A'
+    },
+      t: 1643318380,
+      unreadCount: 0,
+      muteExpiration: 0,
+      notSpam: true,
+      ephemeralDuration: 0,
+      ephemeralSettingTimestamp: 0,
+      disappearingModeInitiator: 'chat',
+      unreadMentionCount: 0,
+      hasUnreadMention: false,
+      archiveAtMentionViewedInDrawer: false,
+        profilePicThumbObj: [Object
+    ],
+        msgs: null
+  },
+      groupMetadata: null,
+      presence: { id: '972548046820@c.us', chatstates: []
+  },
+      isOnline: false,
+      participantsCount: 1
+},
+    isOnline: false,
+    chatId: '972548046820@c.us',
+    quotedMsgObj: null,
+    mediaData: {},
+    text: '.'
+}

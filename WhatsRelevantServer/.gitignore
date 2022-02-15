@@ -1,0 +1,11 @@
+/user7.data.json
+/_IGNORE_user7
+node_modules
+node_modules
+node_modules
+
+# managed
+**.data.json
+**.node-persist**
+**_IGNORE_**
+# end managed
