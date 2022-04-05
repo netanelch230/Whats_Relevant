@@ -14,6 +14,7 @@ import KeyWords from '../screens/Settings/KeyWords';
 import Notifications from '../screens/Settings/Notifications';
 import Preference from '../screens/Settings/Preference';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Participants from '../screens/Settings/ChooseParticipants';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -53,7 +54,22 @@ const ReturnHomePage = (props) => {
     </TouchableOpacity>
   );
 };
+function ParticipantsStack({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName="Participants">
+      <Stack.Screen
+        name="Participants"
+        component={Participants}
+        options={{
 
+          headerLeft: () => (
+            <NavigationDrawerStructure navigationProps={navigation} />
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 function HomeStack({navigation}) {
   return (
     <Stack.Navigator initialRouteName="Home">
@@ -255,6 +271,15 @@ function Rout() {
             groupName: 'About',
           }}
           component={SetAbout}
+        />
+        <Drawer.Screen
+          name="Participants"
+          options={{
+            drawerLabel: 'Participants',
+            // Section/Group Name
+            groupName: 'Settings',
+          }}
+          component={ParticipantsStack}
         />
       </Drawer.Navigator>
     </NavigationContainer>

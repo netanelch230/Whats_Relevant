@@ -1,3 +1,5 @@
+const log = require('log-to-file');
+
 const currentMessageTime = (how) => {
   var today = new Date();
   //   var date =
@@ -5,43 +7,68 @@ const currentMessageTime = (how) => {
 
   return today.getHours() + ":" + today.getMinutes();
 };
-module.exports = { currentMessageTime };
 
-function presentAllGroups(client)
-{
+
+function reverseString(str) {
+
+  var splitString = str.split("");
+  var reverseArray = splitString.reverse();
+  var joinArray = reverseArray.join("");
+  return joinArray;
+}
+
+
+function presentAllGroups(client) {
   client.getAllGroups(false).
-  then(groups => {
+    then(groups => {
       for (const group of groups) {
-          console.log(reverseString(group.name));
+        log(reverseString(group.name));
       }
-  });
+    });
 }
 
-function presentAllParticipantInGroup(client, index)
-{
-  client.getAllGroups(false).
-  then(groups => {
-      console.log("The participants of: " + reverseString(groups[index].name));
-      const participants = groups[index].groupMetadata.participants;
-      console.log(groups[index].groupMetadata.participants);
-      for (const participant of participants) {
-          console.log((participant));
-      }
-  });
+async function getAllParticipantOnGroupById(client, currentGroup, groupsMap) {
 
-}
+  let participants = [];
 
-function ChooseParticipantInGroup(client,indexOfGroup, indexOfParticipant) {
-  client.getAllGroups(false).
-  then(groups => {
-      const group = groups[indexOfGroup];
-      if(group!==undefined)
+  await client.getGroupMembers(currentGroup).then(members => {
+    for (const member of members) {
+      const id = member.id;
+      const text = member.formattedName;
+      const image = member.profilePicThumbObj.eurl != undefined ? member.profilePicThumbObj.eurl : null;
+      if(! thisContantExist(currentGroup,groupsMap,id))
       {
-          m_groupsMap.set(group.id, group.groupMetadata.participants[indexOfParticipant].id._serialized);
-          console.log("the group is: "+reverseString(group.name)+" and the participant is: "+
-              group.groupMetadata.participants[indexOfParticipant].id._serialized);
+        let participant = {text,id};
+        log(id);
+        log(text);
+        participants.push(participant);
+      }
+    }
+    return participants;
+  });
+  return participants;
+}
+
+
+
+function ChooseParticipantInGroup(client, indexOfGroup, indexOfParticipant) {
+  client.getAllGroups(false).
+    then(groups => {
+      const group = groups[indexOfGroup];
+      if (group !== undefined) {
+        m_groupsMap.set(group.id, group.groupMetadata.participants[indexOfParticipant].id._serialized);
+        log("the group is: " + reverseString(group.name) + " and the participant is: " +
+          group.groupMetadata.participants[indexOfParticipant].id._serialized);
       }
 
-  });
+    });
 
 }
+
+function thisContantExist( currentGroup, groupsMap,contantId )
+{
+  return (groupsMap.hasOwnProperty(currentGroup) && 
+  groupsMap[currentGroup].find((author)=>{return contantId === author}))
+}
+
+module.exports = { currentMessageTime, reverseString, getAllParticipantOnGroupById };

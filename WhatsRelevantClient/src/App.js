@@ -8,6 +8,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Provider} from 'react-redux';
 import {Store} from './redux/store';
 import {useSelector} from 'react-redux';
+import Participants from './screens/Settings/ChooseParticipants';
+import Groups from './screens/Home/MessgaeCard';
 
 const Stack = createStackNavigator();
 
@@ -37,7 +39,9 @@ const App = () => {
             name="Rout"
             component={Rout}
           />
-        )}
+          )
+          
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );
