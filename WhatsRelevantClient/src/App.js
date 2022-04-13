@@ -1,43 +1,49 @@
 import React from 'react';
-import {StyleSheet, View, Text, Pressable} from 'react-native';
 
 import Rout from './Router/Rout';
-import Login from './screens/Login/Login';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider} from 'react-redux';
 import {Store} from './redux/store';
 import {useSelector} from 'react-redux';
+import Form from './screens/Login/Form';
+import QrCode from './screens/Login/QrCode';
 
+import {SocketContext, socket} from './config/Socket';
 const Stack = createStackNavigator();
 
 const AppWrapper = () => {
   return (
-    <Provider store={Store}>
-      <App />
-    </Provider>
+    <SocketContext.Provider value={socket}>
+      <Provider store={Store}>
+        <App />
+      </Provider>
+    </SocketContext.Provider>
   );
 };
 
 const App = () => {
-  const {loggedIn} = useSelector((state) => state.loginReducer);
-  console.log('logged In?', loggedIn);
+  const {loggedIn} = useSelector((state) => state.login);
+  //console.log('logged In?', loggedIn);
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {!loggedIn ? (
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Login"
-            component={Login}
-          />
-        ) : (
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Rout"
-            component={Rout}
-          />
-        )}
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Form"
+          component={Form}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="QrCode"
+          component={QrCode}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Rout"
+          component={Rout}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,67 +1,35 @@
-import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image,
-  SafeAreaView,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import {FormItem} from 'react-native-form-component';
+import {signup} from '../../redux/actions/login';
+import {connect} from 'react-redux';
 
-import {useSelector, useDispatch} from 'react-redux';
-import {setLoggedIn} from '../../redux/actions/login';
+import Form from './Form';
+import QrCode from './QrCode';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
-import socket from '../../config/Socket';
-
-export default function Login({navigation}) {
-  const dispatch = useDispatch();
-
-  const [image, setImage] = useState(null);
-
-  const onPress = () => {
-    dispatch(setLoggedIn(true));
-    navigation.navigate('Rout');
-  };
-
-  useEffect(() => {
-    console.log('use');
-
-    socket.emit('join', () => {
-      console.log('join');
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on('QrCode', (img) => {
-      setImage(img);
-      console.log('setImage');
-    });
-    socket.on('SuccessSession', ({message}) => {
-      console.log(message);
-      dispatch(setLoggedIn(true));
-      navigation.navigate('Rout');
-    });
-  });
-
+//here we can explnation about the app- in the stack
+function Login({navigation}) {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>This is the qr code scan page!</Text>
-      {image ? (
-        <Image style={{width: 300, height: 300}} source={{uri: image}} />
-      ) : (
-        <Text>loading QrCode....</Text>
-      )}
-
-      <Button onPress={onPress} title="OK" color="#841584" />
-    </SafeAreaView>
+    <NavigationContainer >
+      <Stack.Navigator>
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Form"
+          component={Form}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="QrCode"
+          component={QrCode}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default connect(null, {
+  signup,
+})(Login);

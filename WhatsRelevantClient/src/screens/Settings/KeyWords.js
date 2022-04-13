@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -10,23 +10,31 @@ import {
   ScrollView,
 } from 'react-native';
 import Words from '../../components/Words';
-import {Headline} from 'react-native-paper';
-import {useSelector, useDispatch} from 'react-redux';
-import {
-  removeWordArr,
-  removeWord,
-  setWordArr,
-  setWord,
-} from '../../redux/actions/words';
+import {fetchAddWords, fetchWords} from '../../redux/actions/words';
+import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import ModelPopUp from '../../components/ModelPopUp';
 
-export default function KeyWords() {
+
+const KeyWords = (props) => {
   const dispatch = useDispatch();
-  const {word, wordItems} = useSelector((state) => state.wordsReducer);
+  const [word, setWord] = useState('');
+  const [message, setMessage] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    props.fetchWords();
+  }, []);
 
   const handleAddword = () => {
+    if (word == '') {
+      setMessage('invalid Input');
+      return setModalVisible(true);
+    }
+
     Keyboard.dismiss();
-    dispatch(setWordArr(word));
-    dispatch(removeWord());
+    props.fetchAddWords({word});
+    setWord('');
   };
 
   return (
@@ -37,7 +45,7 @@ export default function KeyWords() {
           flexGrow: 1,
         }}
         keyboardShouldPersistTaps="handled">
-        <Words items={wordItems} />
+        <Words items={props.words.wordItems} />
       </ScrollView>
 
       <KeyboardAvoidingView
@@ -47,7 +55,7 @@ export default function KeyWords() {
           style={styles.input}
           placeholder={'Add Key Words'}
           value={word}
-          onChangeText={(text) => dispatch(setWord(text))}
+          onChangeText={(text) => setWord(text)}
         />
         <TouchableOpacity onPress={() => handleAddword()}>
           <View style={styles.addWrapper}>
@@ -55,9 +63,14 @@ export default function KeyWords() {
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
+      <ModelPopUp
+        massage={message}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -112,3 +125,5 @@ const styles = StyleSheet.create({
   },
   addText: {},
 });
+//1.mapStateToProps 2.mapDispatchToProps
+export default connect(({words}) => ({words}), {fetchAddWords,fetchWords})(KeyWords);

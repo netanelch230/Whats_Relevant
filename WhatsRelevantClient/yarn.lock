@@ -8695,6 +8695,11 @@
     "react-native-ratings" "8.0.4"
     "react-native-size-matters" "^0.3.1"
 
+"react-native-form-component@^2.2.4":
+  "integrity" "sha512-ywykgy2ACxaTs9qJZq3TEodkRYajYkOHaE/lhhN8qQQWKCwWLz0Xo6fiExcqgUvbmi68r9AR6BJUBrD4A1ZCvw=="
+  "resolved" "https://registry.npmjs.org/react-native-form-component/-/react-native-form-component-2.2.4.tgz"
+  "version" "2.2.4"
+
 "react-native-gesture-handler@*", "react-native-gesture-handler@^1.10.3", "react-native-gesture-handler@>= 1.0.0":
   "integrity" "sha512-cBGMi1IEsIVMgoox4RvMx7V2r6bNKw0uR1Mu1o7NbuHS6BRSVLq0dP34l2ecnPlC+jpWd3le6Yg1nrdCjby2Mw=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz"
@@ -8711,10 +8716,20 @@
   "resolved" "https://registry.npmjs.org/react-native-icons/-/react-native-icons-0.7.1.tgz"
   "version" "0.7.1"
 
+"react-native-input-style@^1.0.2":
+  "integrity" "sha512-guk/xrWMCrgZFTV62SH7CtQo1hC/wlPcMRVH5RaTsT3zh85JJiKIuwzChmKGKIeNoxpxhB9tH9A3ozgWvLW6zQ=="
+  "resolved" "https://registry.npmjs.org/react-native-input-style/-/react-native-input-style-1.0.2.tgz"
+  "version" "1.0.2"
+
 "react-native-iphone-x-helper@^1.3.0", "react-native-iphone-x-helper@^1.3.1":
   "integrity" "sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg=="
   "resolved" "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz"
   "version" "1.3.1"
+
+"react-native-network-info@^5.2.1":
+  "integrity" "sha512-iam74xXtrSqqZurCl1/bSjZ9jXcsJY84g7brx1/4uVGCY26c6m+4CArHNSHOsz5ATg2NQT+81sjNy0KlCPyK4g=="
+  "resolved" "https://registry.npmjs.org/react-native-network-info/-/react-native-network-info-5.2.1.tgz"
+  "version" "5.2.1"
 
 "react-native-paper@^4.7.2", "react-native-paper@>= 3.0.0":
   "integrity" "sha512-MOcDWjBOaknEpQgdm4fIOsRFIt4PJlMCgWlLk4kIe8Wv99/M0JIoxWABkAf4Lj5BuJgXjXdwr0DA/lhGY1BRoQ=="
@@ -8802,7 +8817,7 @@
     "prop-types" "^15.5.10"
     "yargs" "^8.0.2"
 
-"react-native@*", "react-native@>=0.23.1", "react-native@>=0.42.0", "react-native@>=0.57", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@0.63.3":
+"react-native@*", "react-native@>=0.23.1", "react-native@>=0.42.0", "react-native@>=0.47", "react-native@>=0.57", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@0.63.3":
   "integrity" "sha512-71wq13uNo5W8QVQnFlnzZ3AD+XgUBYGhpsxysQFW/hJ8GAt/J5o+Bvhy81FXichp6IBDJDh/JgfHH2gNji8dFA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.63.3.tgz"
   "version" "0.63.3"

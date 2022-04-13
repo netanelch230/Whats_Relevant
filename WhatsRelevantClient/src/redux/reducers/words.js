@@ -4,7 +4,7 @@ import {
   ADD_WORD,
   REMOVE_WORD,
 } from '../actions/words';
-
+import {ACCOUNT_WORDS} from '../actions/types';
 const initialState = {
   word: '',
   wordItems: [],
@@ -13,6 +13,21 @@ const initialState = {
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
+    case ACCOUNT_WORDS.FETCH:
+      return {
+        ...state,
+      };
+    case ACCOUNT_WORDS.FETCH_ERROR:
+      return {
+        ...state,
+        message: action.message,
+      };
+    case ACCOUNT_WORDS.FETCH_SUCCESS:
+      return {
+        ...state,
+        wordItems: action.words,
+      };
+    ////////////////////////
     case ADD_WORD_ARR:
       return {
         ...state,

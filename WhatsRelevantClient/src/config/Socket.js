@@ -1,3 +1,6 @@
-const ENDPOINT = 'http://192.168.14.13:5000';
+const ENDPOINT_SOCKET = 'http://192.168.14.67:5001';
+import React from 'react';
 import io from 'socket.io-client';
-export default io(ENDPOINT);
+const SocketContext = React.createContext(socket);
+const socket = io(ENDPOINT_SOCKET);
+export {SocketContext, socket};
