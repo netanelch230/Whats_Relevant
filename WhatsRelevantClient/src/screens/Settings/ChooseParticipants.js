@@ -9,45 +9,32 @@ import {
   Dimensions,
   Platform,
   FlatList,
-  Button
+  Button,
+  ScrollView,
 } from 'react-native';
 
 
 
  import {useSelector} from 'react-redux';
  import socket from '../../config/Socket';
+ import Card from '../../components/Card';
  const window = Dimensions.get('window');
-
- const styles = StyleSheet.create({
-  container: {
-   flex: 1,
-   paddingTop: 22
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
-});
-
-
 
 export default function Participants() {
   
  const {participants} = useSelector((state) => state.participantsReducer);
   return (
-    <View style={styles.container}>
-      <FlatList
+    <ScrollView>
+      <FlatList style={{backgroundColor:"FFFFFF"}}
         data={participants}
-        renderItem={({item}) => <Button onPress={() => 
+        renderItem={({item}) => <Card onPress={() => 
           { 
             console.log(item.id);
             socket.emit("chooseParticipant",item.id);
           }
-          }title={item.text}/>}
+          }image={item.image} name={item.text}/>}
       />
-    </View>
+      </ScrollView>
   );
-
 
 }

@@ -15,6 +15,8 @@ import Notifications from '../screens/Settings/Notifications';
 import Preference from '../screens/Settings/Preference';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Participants from '../screens/Settings/ChooseParticipants';
+import Groups from '../screens/Settings/ChooseGroup';
+import Socket from '../config/Socket';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -54,22 +56,7 @@ const ReturnHomePage = (props) => {
     </TouchableOpacity>
   );
 };
-function ParticipantsStack({navigation}) {
-  return (
-    <Stack.Navigator initialRouteName="Participants">
-      <Stack.Screen
-        name="Participants"
-        component={Participants}
-        options={{
 
-          headerLeft: () => (
-            <NavigationDrawerStructure navigationProps={navigation} />
-          ),
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 function HomeStack({navigation}) {
   return (
     <Stack.Navigator initialRouteName="Home">
@@ -96,7 +83,55 @@ function HomeStack({navigation}) {
     </Stack.Navigator>
   );
 }
+function SetGroupsAndMembers({navigation}) {
+  Socket.emit('GetAllGroups');
+  return (
+    <Stack.Navigator
+      initialRouteName="Groups"
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerStructure navigationProps={navigation} />
+        ),
+        headerRight: () => (
+          <ReturnHomePage navigationProps={navigation} rout={'Home'} />
+        ),
+        headerStyle: {
+          backgroundColor: '#37b3e0', //Set Header color
+          borderBottomLeftRadius: 25,
+          borderBottomRightRadius: 25,
+        },
+        headerTintColor: '#fff', //Set Header text color
+        headerTitleStyle: {
+          fontWeight: 'bold', //Set Header text style
+        },
+      }}>
+      <Stack.Screen
+        name="Groups"
+        component={Groups}
+        options={{
+          title: 'Groups And Members', //Set Header Title
+        }}
+      />
+    </Stack.Navigator>
+  );
+  
+}
+function ParticipantsStack({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName="Participants">
+      <Stack.Screen
+        name="Participants"
+        component={Participants}
+        options={{
 
+          headerLeft: () => (
+            <NavigationDrawerStructure navigationProps={navigation} />
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 function KeyWordsSet({navigation}) {
   return (
     <Stack.Navigator
@@ -257,11 +292,24 @@ function Rout() {
         <Drawer.Screen
           name="KeyWords"
           options={{
-            drawerLabel: 'Selecet Key Words',
+            drawerLabel: 'Select Key Words',
             // Section/Group Name
             groupName: 'Settings',
           }}
           component={KeyWordsSet}
+        />
+        <Drawer.Screen
+          name="Groups"
+          options={{
+            drawerLabel: 'Select Groups And Members',
+            // Section/Group Name
+            groupName: 'Settings',
+          }}
+          component={SetGroupsAndMembers}
+        />
+        <Drawer.Screen
+          name="Participants"
+          component={ParticipantsStack}
         />
         <Drawer.Screen
           name="About"
@@ -271,15 +319,6 @@ function Rout() {
             groupName: 'About',
           }}
           component={SetAbout}
-        />
-        <Drawer.Screen
-          name="Participants"
-          options={{
-            drawerLabel: 'Participants',
-            // Section/Group Name
-            groupName: 'Settings',
-          }}
-          component={ParticipantsStack}
         />
       </Drawer.Navigator>
     </NavigationContainer>

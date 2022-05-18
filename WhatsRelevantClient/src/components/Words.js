@@ -5,14 +5,14 @@ import {ListItem, Icon} from 'react-native-elements';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {removeWordArr} from '../redux/actions/words';
+import socket from '../config/Socket';
 
 const Words = (props) => {
   const [swip, setSwip] = useState(false);
   const dispatch = useDispatch();
 
   const deleteWord = (index) => {
-    console.log(index);
-    dispatch(removeWordArr(index));
+    socket.emit("RemoveWord",index);
   };
   const searchWord=(index) => {
     console.log(index);

@@ -10,7 +10,7 @@ function userReducer(state = initialState, action) {
       console.log(ADD_GROUP, ' : ', action.payload);
       return {
         ...state,
-        groups: [...state.groups, action.payload],
+        groups:action.payload,
       };
     default:
       return state;

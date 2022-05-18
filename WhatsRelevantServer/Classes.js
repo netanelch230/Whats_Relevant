@@ -1,12 +1,12 @@
 class Message{
-    constructor(imageProfile, body,sender,timeStamp,timeOfMessage, reason,isContact) {
+    constructor(imageProfile, body,sender,timeStamp, reason,isContact,group) {
       this.imageProfile = imageProfile;
       this.body = body;
       this.sender = sender;
       this.timeStamp = timeStamp;
-      this.timeOfMessage = timeOfMessage;
       this.reason = reason;
       this.isContact = isContact;
+      this.group=group;
       
     }
   }

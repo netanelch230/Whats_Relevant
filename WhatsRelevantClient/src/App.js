@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 import {Store} from './redux/store';
 import {useSelector} from 'react-redux';
 import Participants from './screens/Settings/ChooseParticipants';
-import Groups from './screens/Home/MessgaeCard';
+import Groups from './screens/Settings/ChooseGroup';
 
 const Stack = createStackNavigator();
 
