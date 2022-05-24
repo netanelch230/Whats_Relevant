@@ -5,7 +5,8 @@ import Rout from './Router/Rout';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider} from 'react-redux';
-import {Store} from './redux/store';
+import {store, persistor} from './redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
 import {useSelector} from 'react-redux';
 import Form from './screens/Login/Form';
 import QrCode from './screens/Login/QrCode';
@@ -16,8 +17,10 @@ const Stack = createStackNavigator();
 const AppWrapper = () => {
   return (
     <SocketContext.Provider value={socket}>
-      <Provider store={Store}>
-        <App />
+      <Provider store={store}>
+        <PersistGate persistor={persistor} loading={null}>
+          <App />
+        </PersistGate>
       </Provider>
     </SocketContext.Provider>
   );

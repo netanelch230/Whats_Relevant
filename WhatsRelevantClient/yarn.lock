@@ -1136,6 +1136,13 @@
     "futoin-hkdf" "^1.3.3"
     "type-fest" "^2.1.0"
 
+"@react-native-async-storage/async-storage@^1.17.5":
+  "integrity" "sha512-0XT5zZa3mh8XfAFYytq9hPyI6w0FJEBED4pjeLc17pkNF9tND86fsTX2pQFr15uV0nvfYeHisbd/mM7bpGrWKA=="
+  "resolved" "https://registry.npmjs.org/@react-native-async-storage/async-storage/-/async-storage-1.17.5.tgz"
+  "version" "1.17.5"
+  dependencies:
+    "merge-options" "^3.0.4"
+
 "@react-native-community/cli-debugger-ui@^4.13.1":
   "integrity" "sha512-UFnkg5RTq3s2X15fSkrWY9+5BKOFjihNSnJjTV2H5PtTUFbd55qnxxPw8CxSfK0bXb1IrSvCESprk2LEpqr5cg=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz"
@@ -5585,6 +5592,11 @@
   "resolved" "https://registry.npmjs.org/is-plain-obj/-/is-plain-obj-1.1.0.tgz"
   "version" "1.1.0"
 
+"is-plain-obj@^2.1.0":
+  "integrity" "sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA=="
+  "resolved" "https://registry.npmjs.org/is-plain-obj/-/is-plain-obj-2.1.0.tgz"
+  "version" "2.1.0"
+
 "is-plain-object@^2.0.1", "is-plain-object@^2.0.3", "is-plain-object@^2.0.4":
   "integrity" "sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og=="
   "resolved" "https://registry.npmjs.org/is-plain-object/-/is-plain-object-2.0.4.tgz"
@@ -6921,6 +6933,13 @@
   "integrity" "sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E="
   "resolved" "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-1.0.1.tgz"
   "version" "1.0.1"
+
+"merge-options@^3.0.4":
+  "integrity" "sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ=="
+  "resolved" "https://registry.npmjs.org/merge-options/-/merge-options-3.0.4.tgz"
+  "version" "3.0.4"
+  dependencies:
+    "is-plain-obj" "^2.1.0"
 
 "merge-stream@^1.0.1":
   "integrity" "sha1-QEEgLVCKNCugAXQAjfDCUbjBNeE="
@@ -8817,7 +8836,7 @@
     "prop-types" "^15.5.10"
     "yargs" "^8.0.2"
 
-"react-native@*", "react-native@>=0.23.1", "react-native@>=0.42.0", "react-native@>=0.47", "react-native@>=0.57", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@0.63.3":
+"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.68 || 1000.0.0", "react-native@>=0.23.1", "react-native@>=0.42.0", "react-native@>=0.47", "react-native@>=0.57", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@0.63.3":
   "integrity" "sha512-71wq13uNo5W8QVQnFlnzZ3AD+XgUBYGhpsxysQFW/hJ8GAt/J5o+Bvhy81FXichp6IBDJDh/JgfHH2gNji8dFA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.63.3.tgz"
   "version" "0.63.3"
@@ -9015,6 +9034,11 @@
     "lodash" "^4.17.19"
     "prop-types" "^15.7.2"
     "redux-devtools-instrument" "^1.10.0"
+
+"redux-persist-react-native-async-storage@^1.0.1":
+  "integrity" "sha512-9fbftdECA1BLSpVoT7E7Cl1roitUJTNmIjTY30FUlyvzuHk2BNNmGfvZl192fi5L6ox8NhO9Syqu+yhXuJyRkg=="
+  "resolved" "https://registry.npmjs.org/redux-persist-react-native-async-storage/-/redux-persist-react-native-async-storage-1.0.1.tgz"
+  "version" "1.0.1"
 
 "redux-persist@^6.0.0":
   "integrity" "sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ=="

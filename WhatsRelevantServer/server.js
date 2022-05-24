@@ -19,7 +19,7 @@ app.use("/words", WordsRouter);
 //wa
 const wa = require("@open-wa/wa-automate");
 const ev = require("@open-wa/wa-automate").ev;
-const port = 5001;
+const port = 3000;
 
 //socket
 const server = http.createServer(app);

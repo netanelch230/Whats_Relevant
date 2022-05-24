@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 const router = new Router();
-var words = [];
+var words = ["asd", "asd", "asd", "asd", "d", "d", "d", "d"];
 
 router.post("/removeWords", (req, res, next) => {
   const { index } = req.body;
@@ -17,6 +17,7 @@ router.post("/addWords", (req, res, next) => {
 });
 router.get("/getWords", (req, res, next) => {
   console.log("getWords");
+
   res.json({ words });
 });
 

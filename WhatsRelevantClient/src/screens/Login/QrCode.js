@@ -5,7 +5,6 @@ import {setLoggedIn} from '../../redux/actions/login';
 
 import {SocketContext} from '../../config/Socket';
 
-
 function QrCode({navigation, route}) {
   const socket = React.useContext(SocketContext);
   const dispatch = useDispatch();

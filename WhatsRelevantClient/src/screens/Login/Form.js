@@ -24,13 +24,13 @@ function Form(props) {
   };
 
   const signUpFetch = async ({userName}) => {
-    await props.signup({userName});
-    if (props.login.status !== fetchStates.error) {
-      setErrorInput(props.login.message);
-      props.navigation.navigate('QrCode', {userName: userName});
-    } else {
-      setErrorInput('login fetch has failed ,try again!');
-    }
+    //await props.signup({userName});
+    //if (props.login.status !== fetchStates.error) {
+    //setErrorInput(props.login.message);
+    props.navigation.navigate('QrCode', {userName: userName});
+    //} else {
+    //setErrorInput('login fetch has failed ,try again!');
+    //}
     setIsLoading(false);
     setDisabled(false);
   };

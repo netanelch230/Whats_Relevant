@@ -4,7 +4,7 @@ const router = new Router();
 
 router.post("/signup", (req, res, next) => {
   const { phoneNumber, userName } = req.body;
-  
+  console.log("asdf")
   const message = `user success signup  ${userName} ${phoneNumber}`;
   res.json({ message });
 });

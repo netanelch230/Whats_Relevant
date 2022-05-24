@@ -10,11 +10,10 @@ import {
   ScrollView,
 } from 'react-native';
 import Words from '../../components/Words';
-import {fetchAddWords, fetchWords} from '../../redux/actions/words';
+import {fetchAddWords, fetchWords, setWordArr} from '../../redux/actions/words';
 import {connect} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import ModelPopUp from '../../components/ModelPopUp';
-
 
 const KeyWords = (props) => {
   const dispatch = useDispatch();
@@ -33,7 +32,8 @@ const KeyWords = (props) => {
     }
 
     Keyboard.dismiss();
-    props.fetchAddWords({word});
+    //props.fetchAddWords({word});
+    dispatch(setWordArr(word));
     setWord('');
   };
 
@@ -53,7 +53,7 @@ const KeyWords = (props) => {
         style={styles.writewordWrapper}>
         <TextInput
           style={styles.input}
-          placeholder={'Add Key Words'}
+          placeholder={'Add Key  Words'}
           value={word}
           onChangeText={(text) => setWord(text)}
         />
@@ -126,4 +126,6 @@ const styles = StyleSheet.create({
   addText: {},
 });
 //1.mapStateToProps 2.mapDispatchToProps
-export default connect(({words}) => ({words}), {fetchAddWords,fetchWords})(KeyWords);
+export default connect(({words}) => ({words}), {fetchAddWords, fetchWords})(
+  KeyWords,
+);

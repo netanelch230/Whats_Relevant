@@ -9,12 +9,10 @@ var today = new Date();
 
 import {SocketContext} from '../../config/Socket';
 
-
-
 export default function Home({navigation}) {
   //need to add when conection lost => login page
   const dispatch = useDispatch();
-
+  const socket = React.useContext(SocketContext);
   useEffect(() => {
     socket.on(
       'message',
