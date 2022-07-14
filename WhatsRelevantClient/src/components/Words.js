@@ -5,14 +5,14 @@ import {ListItem, Icon} from 'react-native-elements';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {removeWordArr} from '../redux/actions/words';
+import socket from '../config/Socket';
 
 const Words = (props) => {
   const [swip, setSwip] = useState(false);
   const dispatch = useDispatch();
 
-  const deleteWord = (index) => {
-    console.log(index);
-    dispatch(removeWordArr(index));
+  const deleteWord = (item) => {
+    socket.emit("RemoveWord",item);
   };
   const searchWord=(index) => {
     console.log(index);
@@ -36,7 +36,7 @@ const Words = (props) => {
           />
         }
         rightContent={
-          <TouchableOpacity key={index} onPress={() => deleteWord(index)}>
+          <TouchableOpacity key={item} onPress={() => deleteWord(item)}>
             <FontAwesome5 name="trash-alt" size={50} color={'#999999'} />
           </TouchableOpacity>
         }>

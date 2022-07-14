@@ -1,3 +1,3 @@
-const ENDPOINT = 'http://192.168.14.13:5000';
+const ENDPOINT = 'http://10.100.102.12:5000';
 import io from 'socket.io-client';
 export default io(ENDPOINT);

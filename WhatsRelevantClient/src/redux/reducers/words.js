@@ -16,7 +16,7 @@ function userReducer(state = initialState, action) {
     case ADD_WORD_ARR:
       return {
         ...state,
-        wordItems: [...state.wordItems, action.payload],
+        wordItems: action.payload,
       };
     case REMOVE_WORD_ARR:
       return {

@@ -8,10 +8,12 @@ import {
   TouchableOpacity,
   Keyboard,
   ScrollView,
+  Alert,
 } from 'react-native';
 import Words from '../../components/Words';
 import {Headline} from 'react-native-paper';
 import {useSelector, useDispatch} from 'react-redux';
+import socket from '../../config/Socket';
 import {
   removeWordArr,
   removeWord,
@@ -25,8 +27,13 @@ export default function KeyWords() {
 
   const handleAddword = () => {
     Keyboard.dismiss();
-    dispatch(setWordArr(word));
     dispatch(removeWord());
+    if(!wordItems.includes(word)){
+      socket.emit("AddWord",word.toLowerCase());
+    }
+    else{
+        Alert.alert("This word already exist");
+      }
   };
 
   return (

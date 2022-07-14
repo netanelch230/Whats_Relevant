@@ -11,9 +11,10 @@ import CustomSidebarMenu from './CustomSidebarMenu';
 import Home from '../screens/Home/Home';
 import About from '../screens/About/About';
 import KeyWords from '../screens/Settings/KeyWords';
-import Notifications from '../screens/Settings/Notifications';
-import Preference from '../screens/Settings/Preference';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Participants from '../screens/Settings/ChooseParticipants';
+import Groups from '../screens/Settings/ChooseGroup';
+import Socket from '../config/Socket';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -80,7 +81,55 @@ function HomeStack({navigation}) {
     </Stack.Navigator>
   );
 }
+function SetGroupsAndMembers({navigation}) {
+  Socket.emit('GetAllGroups');
+  return (
+    <Stack.Navigator
+      initialRouteName="Groups"
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerStructure navigationProps={navigation} />
+        ),
+        headerRight: () => (
+          <ReturnHomePage navigationProps={navigation} rout={'Home'} />
+        ),
+        headerStyle: {
+          backgroundColor: '#37b3e0', //Set Header color
+          borderBottomLeftRadius: 25,
+          borderBottomRightRadius: 25,
+        },
+        headerTintColor: '#fff', //Set Header text color
+        headerTitleStyle: {
+          fontWeight: 'bold', //Set Header text style
+        },
+      }}>
+      <Stack.Screen
+        name="Groups"
+        component={Groups}
+        options={{
+          title: 'Groups And Members', //Set Header Title
+        }}
+      />
+    </Stack.Navigator>
+  );
+  
+}
+function ParticipantsStack({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName="Participants">
+      <Stack.Screen
+        name="Participants"
+        component={Participants}
+        options={{
 
+          headerLeft: () => (
+            <NavigationDrawerStructure navigationProps={navigation} />
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 function KeyWordsSet({navigation}) {
   return (
     <Stack.Navigator
@@ -143,68 +192,7 @@ function SetAbout({navigation}) {
     </Stack.Navigator>
   );
 }
-function setPreference({navigation}) {
-  return (
-    <Stack.Navigator
-      initialRouteName="Preference"
-      screenOptions={{
-        headerLeft: () => (
-          <NavigationDrawerStructure navigationProps={navigation} />
-        ),
-        headerRight: () => (
-          <ReturnHomePage navigationProps={navigation} rout={'Home'} />
-        ),
-        headerStyle: {
-          backgroundColor: '#37b3e0', //Set Header color
-          borderBottomLeftRadius: 25,
-          borderBottomRightRadius: 25,
-        },
-        headerTintColor: '#fff', //Set Header text color
-        headerTitleStyle: {
-          fontWeight: 'bold', //Set Header text style
-        },
-      }}>
-      <Stack.Screen
-        name="Preference"
-        component={Preference}
-        options={{
-          title: 'Preference', //Set Header Title
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
-function setNotifications({navigation}) {
-  return (
-    <Stack.Navigator
-      initialRouteName="Notifications"
-      screenOptions={{
-        headerLeft: () => (
-          <NavigationDrawerStructure navigationProps={navigation} />
-        ),
-        headerRight: () => (
-          <ReturnHomePage navigationProps={navigation} rout={'Home'} />
-        ),
-        headerStyle: {
-          backgroundColor: '#37b3e0',
-          borderBottomLeftRadius: 25,
-          borderBottomRightRadius: 25,
-        },
-        headerTintColor: '#fff', //Set Header text color
-        headerTitleStyle: {
-          fontWeight: 'bold', //Set Header text style
-        },
-      }}>
-      <Stack.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{
-          title: 'Notifications', //Set Header Title
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
+
 function Rout() {
   return (
     <NavigationContainer independent={true}>
@@ -221,31 +209,26 @@ function Rout() {
           component={HomeStack}
         />
         <Drawer.Screen
-          name="Preference"
-          options={{
-            drawerLabel: 'Preference',
-            // Section/Group Name
-            groupName: 'Settings',
-          }}
-          component={setPreference}
-        />
-        <Drawer.Screen
-          name="Notifications"
-          options={{
-            drawerLabel: 'Notifications',
-            // Section/Group Name
-            groupName: 'Settings',
-          }}
-          component={setNotifications}
-        />
-        <Drawer.Screen
           name="KeyWords"
           options={{
-            drawerLabel: 'Selecet Key Words',
+            drawerLabel: 'Select Key Words',
             // Section/Group Name
             groupName: 'Settings',
           }}
           component={KeyWordsSet}
+        />
+        <Drawer.Screen
+          name="Groups"
+          options={{
+            drawerLabel: 'Select Groups And Members',
+            // Section/Group Name
+            groupName: 'Settings',
+          }}
+          component={SetGroupsAndMembers}
+        />
+        <Drawer.Screen
+          name="Participants"
+          component={ParticipantsStack}
         />
         <Drawer.Screen
           name="About"

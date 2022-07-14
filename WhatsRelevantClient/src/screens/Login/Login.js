@@ -10,32 +10,34 @@ import {
 
 import {useSelector, useDispatch} from 'react-redux';
 import {setLoggedIn} from '../../redux/actions/login';
-
 import socket from '../../config/Socket';
+
+
 
 export default function Login({navigation}) {
   const dispatch = useDispatch();
 
   const [image, setImage] = useState(null);
-
+  var uuid;
   const onPress = () => {
     dispatch(setLoggedIn(true));
     navigation.navigate('Rout');
   };
 
   useEffect(() => {
+    socket.on('QrCode', (img) => {
+      setImage(img);
+      console.log('setImage');
+    });
     console.log('use');
-
     socket.emit('join', () => {
       console.log('join');
     });
   }, []);
 
+ 
+
   useEffect(() => {
-    socket.on('QrCode', (img) => {
-      setImage(img);
-      console.log('setImage');
-    });
     socket.on('SuccessSession', ({message}) => {
       console.log(message);
       dispatch(setLoggedIn(true));
