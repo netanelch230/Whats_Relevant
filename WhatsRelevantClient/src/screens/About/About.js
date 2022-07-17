@@ -31,7 +31,7 @@ const About = ({ navigation }) => {
     <View style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('../../Image/Whats relevant logo.png') }
+        source={require('../../Image/WhatsRelevantLogo.png') }
       />
      <Text style={styles.baseText}>
       Hey, we are WhatsRelevant!{'\n'}

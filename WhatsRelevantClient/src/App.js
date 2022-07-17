@@ -9,8 +9,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Provider} from 'react-redux';
 import {Store} from './redux/store';
 import {useSelector} from 'react-redux';
-import Participants from './screens/Settings/ChooseParticipants';
-import Groups from './screens/Settings/ChooseGroup';
 import messaging from '@react-native-firebase/messaging';
 import PushNotification from "react-native-push-notification";
 const Stack = createStackNavigator();

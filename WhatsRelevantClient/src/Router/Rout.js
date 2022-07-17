@@ -121,10 +121,18 @@ function ParticipantsStack({navigation}) {
         name="Participants"
         component={Participants}
         options={{
-
           headerLeft: () => (
             <NavigationDrawerStructure navigationProps={navigation} />
           ),
+          headerStyle: {
+            backgroundColor: '#37b3e0', //Set Header color
+            borderBottomLeftRadius: 25,
+            borderBottomRightRadius: 25,
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
         }}
       />
     </Stack.Navigator>
@@ -227,17 +235,17 @@ function Rout() {
           component={SetGroupsAndMembers}
         />
         <Drawer.Screen
-          name="Participants"
-          component={ParticipantsStack}
-        />
-        <Drawer.Screen
           name="About"
           options={{
             drawerLabel: 'About',
             // Section/Group Name
-            groupName: 'About',
+            groupName: 'Settings',
           }}
           component={SetAbout}
+        />
+        <Drawer.Screen
+          name="Participants"
+          component={ParticipantsStack}
         />
       </Drawer.Navigator>
     </NavigationContainer>

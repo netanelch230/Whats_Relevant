@@ -17,7 +17,8 @@ const handleNotification=(body,sender,group, imageProfile)=>{
     channelId: "test-channel",
     title: group+" : "+sender,
     message: body,
-    largeIcon:imageProfile
+    largeIconUrl: imageProfile,
+    smallIcon: '../../Image/WhatsRelevantLogo.ico'
     
   })
 }
@@ -50,7 +51,6 @@ export default function Home({navigation}) {
     });
 
     socket.on('phoneNumber', ({ content, to }) => {
-      console.log("Hey, we are here!")
       console.log(content, to);
     });
   });

@@ -11,6 +11,7 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 import {setLoggedIn} from '../../redux/actions/login';
 import socket from '../../config/Socket';
+const {GetGuid} = require('../../config/FileSystem.js');
 
 
 
@@ -30,9 +31,14 @@ export default function Login({navigation}) {
       console.log('setImage');
     });
     console.log('use');
-    socket.emit('join', () => {
-      console.log('join');
-    });
+    console.log('Get a guid');
+    GetGuid().then((guid) =>{
+      console.log("The guid is:",guid);
+      socket.emit('join',guid, () => {
+        console.log('join');
+      });
+    })
+    
   }, []);
 
  

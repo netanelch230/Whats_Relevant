@@ -69,9 +69,9 @@ io.on("connect", (socket) => {
   // clientToRooms[x]=socket;
   // console.log("The number of session is: ", x);
   // console.log("The id of socket is:",socket.client.id);
-  socket.on("join", () => {
+  socket.on("join", (guid) => {
     wa.create({
-      sessionId: "netanel",
+      sessionId: guid,
       multiDevice: true, //required to enable multiDevice support
       authTimeout: 60, //wait only 60 seconds to get a connection with the host account device
       blockCrashLogs: true,
