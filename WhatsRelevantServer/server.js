@@ -26,49 +26,10 @@ const io = require("socket.io")(server, {
   },
 });
 
-//sendNotification();
 
-// getWordsArray("972509675307").then(userKeyWords=>{
-//   console.log(userKeyWords);
-//   //socket.emit('words',userKeyWords);
-// });
-
-//updateUserInGroup("972509675307","972526965340-1634456574@g.us","972526965340@c.us",true);
-//doesMemberExistInGroup("972509675307","972526965340-1634456574@g.us","972526965340@c.us").then(val=>{console.log(val)});
-//getMembersInGroup("972509675307","4").then(val=>{console.log(val)});()
-
-//deleteUser("972509675307","2122","050555822");
-
- var clientToRooms={};
-// io.on("connect", (socket) => {
-// socket.on('register', function(clientUuid){ // a client requests registration
-//   console.log("here");
-//   var id = clientUuid == null? uuidv4() : clientUuid; // create an id if client doesn't already have one
-//   var nsp;
-//   var ns = "/" + id;
-
-//   socket.join(id);
- 
-//   var nsp = socket.io.of(ns); // create a room using this id that is only for this client
-//   clientToRooms[ns] = nsp; // save it to a dictionary for future use
-
-//   // set up what to do on connection
-//   nsp.on('connection', function(nsSocket){
-//     console.log('someone connected');
-
-//     nsSocket.on('Info', function(data){
-//       // just an example
-//     });
-//   });
-// });
-// });
 
 io.on("connect", (socket) => {
   log("a user connected :D");
-  // var x = "user" +  uuidv4().replace("-","");
-  // clientToRooms[x]=socket;
-  // console.log("The number of session is: ", x);
-  // console.log("The id of socket is:",socket.client.id);
   socket.on("join", (guid) => {
     wa.create({
       sessionId: guid,
@@ -83,10 +44,7 @@ io.on("connect", (socket) => {
       qrTimeout: 0, //0 means it will wait forever for you to scan the qr code
     }).then((client) => start(client));
 
-
-
     function start(client) {
-      //console.log("The session id is:",sessionId);
       client.getHostNumber().then(hostId => {
         console.log("we are sending a message to", hostId);
         socket.emit("phoneNumber", {
@@ -94,8 +52,6 @@ io.on("connect", (socket) => {
             to:hostId
         })
       })
-
-      
 
       socket.on('GetAllGroups', async () => {
         log("get all groups");

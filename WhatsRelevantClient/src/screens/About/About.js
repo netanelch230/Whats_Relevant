@@ -37,7 +37,7 @@ const About = ({ navigation }) => {
       Hey, we are WhatsRelevant!{'\n'}
       So, what do we offer?{'\n'}
       A platform which allows our users to save time excessively spent in Whatsapp,{'\n'}
-      We classified relevant messages from WhatsApp groups, and alert our users when recived.{'\n'}{'\n'}
+      We classified relevant messages from WhatsApp groups, and alert our users when recived.{'\n'}
       YES!! We do this for you :){'\n'}
       So simple, dont you think?{'\n'}
     </Text>

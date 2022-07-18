@@ -77,7 +77,7 @@ async function messageClassification(message) {
       keyWords[keyWord] /= keyWordsArray.length;
     }
     for (const [keyWord,value] of Object.entries(keyWords)) {
-      if (value>0.66) {
+      if (value>=0.7) {
         return new Message(message.sender.profilePicThumbObj.eurl, message.body,
           message.sender.name, timeOfMessage, keyWord, false, message.chat.name);
       }
