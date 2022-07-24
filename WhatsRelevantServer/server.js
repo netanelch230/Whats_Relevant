@@ -90,24 +90,22 @@ io.on("connect", (socket) => {
 
       socket.on("AddWord", (word) => {
         client.getHostNumber().then(hostId => {
-          setWord(hostId, word);
-          getWordsArray(hostId).then(userKeyWords => {
-            console.log(userKeyWords);
-            socket.emit('words', userKeyWords);
-          });
-
-        })
-      })
-
-      socket.on("RemoveWord", (word) => {
-        client.getHostNumber().then(hostId => {
-          deleteWord(hostId, word);
-          getWordsArray(hostId).then(userKeyWords => {
+         setWord(hostId, word).then(userKeyWords=>{
             console.log(userKeyWords);
             socket.emit('words', userKeyWords);
           })
+         })
         })
-      })
+
+      socket.on("RemoveWord", (word) => {
+        client.getHostNumber().then(hostId => {
+          deleteWord(hostId, word).then(userKeyWords=>{
+              console.log(userKeyWords);
+              socket.emit('words', userKeyWords);
+            })
+          })
+        })
+
 
       client.onMessage(
         message => {
@@ -133,7 +131,7 @@ io.on("connect", (socket) => {
 }
 
     ev.on("qr.**", async (qrcode) => {
-  socket.emit("QrCode", qrcode);
+  socket.emit("QrCode", "http://localhost:7000");
   log("emit image");
 });
 ev.on("sessionData.**", async (sessionData, sessionId) => {

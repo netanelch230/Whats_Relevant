@@ -42,14 +42,16 @@ async function sendNotification()
 }
 
 
-function setWord(userId, word) {
+async function setWord(userId, word) {
   let userRef = db.collection("Users").doc(userId);
-  userRef.get().then((snap) => {
+  let wordsArray = await userRef.get().then((snap) => {
     userData = snap.data();
     userData !== undefined && !userData.Words.includes(word) ? 
     userData.Words = [...userData.Words, word] : userData = { Words: [word] };
     userRef.set(userData);
+    return userData.Words;
   });
+  return wordsArray;
 }
 
 async function deleteWord(userId, wordToDelete) {
@@ -57,6 +59,7 @@ async function deleteWord(userId, wordToDelete) {
   const removeRes = await userRef.update({
     Words: admin.firestore.FieldValue.arrayRemove(wordToDelete)
   });
+  return getWordsArray(userId);
 }
 
 async function deleteUser(userId, groupId, userToDelete)
@@ -109,6 +112,7 @@ function updateUserInGroup(userId, groupId, userToUpdate,isNotExist) {
 }
 
 async function getWordsArray(userId) {
+
   let userRef = db.collection("Users").doc(userId);
   let words = await userRef.get().then((snap) => {
     userData = snap.data();

@@ -46,12 +46,14 @@ async function getAllParticipantOnGroupById(client, currentGroup, groupsMap) {
 
 async function messageClassification(message) {
   hostId=message.to.substring(0,message.to.length-5);
+  const sender= message.sender.name !== undefined ? message.sender.name :
+   message.sender.id.substring(0,message.sender.id.length-5);  
   const timeOfMessage = currentMessageTime();
  let newRelevantMessage = await doesMemberExistInGroup(hostId, message.chat.id, message.author).then(isExist=>{
     if(isExist)
     {
       return new Message(message.sender.profilePicThumbObj.eurl, message.body,
-      message.sender.name, timeOfMessage, message.author, true, message.chat.name);
+     sender, timeOfMessage, message.author, true, message.chat.name);
     }
     return undefined;
  });
@@ -79,7 +81,7 @@ async function messageClassification(message) {
     for (const [keyWord,value] of Object.entries(keyWords)) {
       if (value>=0.7) {
         return new Message(message.sender.profilePicThumbObj.eurl, message.body,
-          message.sender.name, timeOfMessage, keyWord, false, message.chat.name);
+          sender, timeOfMessage, keyWord, false, message.chat.name);
       }
     }
     return undefined;

@@ -6,6 +6,7 @@ import {
   Button,
   Image,
   SafeAreaView,
+  Linking 
 } from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
@@ -18,7 +19,7 @@ const {GetGuid} = require('../../config/FileSystem.js');
 export default function Login({navigation}) {
   const dispatch = useDispatch();
 
-  const [image, setImage] = useState(null);
+  const [link, setLink] = useState(null);
   var uuid;
   const onPress = () => {
     dispatch(setLoggedIn(true));
@@ -26,9 +27,10 @@ export default function Login({navigation}) {
   };
 
   useEffect(() => {
-    socket.on('QrCode', (img) => {
-      setImage(img);
-      console.log('setImage');
+    socket.on('QrCode', (link) => {
+      setLink(link);
+      console.log(link);
+      console.log('setLink');
     });
     console.log('use');
     console.log('Get a guid');
@@ -53,14 +55,17 @@ export default function Login({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>This is the qr code scan page!</Text>
-      {image ? (
-        <Image style={{width: 300, height: 300}} source={{uri: image}} />
+      {link ? (
+        <Text style={styles.baseText}>To register please go to {'\n'}
+        <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL(link)}>
+          {link}
+        </Text>
+        {'\n'}on your computer and scan QRCode using{'\n'}
+         Linked Devices from inside WhatsApp </Text>
       ) : (
-        <Text>loading QrCode....</Text>
+        <Text>Waiting to server</Text>
       )}
-
-      <Button onPress={onPress} title="OK" color="#841584" />
     </SafeAreaView>
   );
 }
@@ -71,5 +76,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  baseText: {
+    fontFamily: "Roboto",
+    width:null,
+    resizeMode: 'contain',
+    textAlign: 'center',
+    lineHeight: 30,
+    padding:60,
+    fontSize: 20
   },
 });
